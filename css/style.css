@@ -1,0 +1,169 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  min-height: 100%;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: -50px;
+}
+.footer,
+.push {
+  height: 50px;
+}  
+
+.footer { 
+	background-color: #999;
+} 
+
+.container { 
+	padding-bottom: 10px;
+}
+
+/*navigation*/ 
+nav { 
+	width: 100%; 
+	background-color: #999; 
+}   
+
+nav ul { 
+	padding-left: 0;
+}
+
+nav a { 
+	text-decoration: none; 
+	color: #000; 
+	font-size: 20px;
+}  
+
+nav a:hover { 
+	text-decoration: none; 
+	color: #fff;
+} 
+
+nav a:active { 
+	text-decoration: none;
+}  
+
+nav ul { 
+	vertical-align: middle;
+}
+
+#my-slider{ 
+	padding-top: 10px;
+}  
+
+#title { 
+	text-align: center; 
+	padding-bottom: 20px; 
+	padding-top: 20px;
+} 
+
+.circle { 
+	min-height: 150px; 
+	min-width: 150px; 
+	max-height: 150px; 
+	max-width: 150px; 
+	background-color: #999; 
+	margin: 0 auto; 
+	border-radius: 80px; 
+	margin-bottom: 20px;
+} 
+
+.error { 
+	color: #d43f3a;
+} 
+
+.success { 
+	color: #4cae4c;
+}
+
+@media all and (min-width: 960px) { 
+	
+	nav li{ 
+		display: inline-block;
+	}  
+
+	.list-items { 
+		float: right; 
+		vertical-align: middle;  
+		padding-top: 20px;
+	}  
+
+	.list-items li{ 
+		padding-right: 20px; 
+		vertical-align: middle;
+	}
+
+	.desktop-logo { 
+		vertical-align: middle; 
+		padding: 10px;
+	}
+
+	.mobile-menu { 
+		display: none;
+	}
+
+} 
+
+@media all and (min-width : 768px) and (max-width: 960px) { 
+	nav li{ 
+		display: inline-block;
+	}  
+
+	.list-items { 
+		float: right; 
+		vertical-align: middle;  
+		padding-top: 20px;
+	}  
+
+	.list-items li{ 
+		padding-right: 20px; 
+		vertical-align: middle;
+	}
+
+	.desktop-logo { 
+		vertical-align: middle; 
+		padding: 10px;
+	}
+
+	.mobile-menu { 
+		display: none;
+	} 
+
+	.desktop { 
+		display: none;
+	}
+} 
+
+@media all and (min-width : 320px) and (max-width: 767px) { 
+
+	.desktop-logo { 
+		display: none;
+	} 
+
+	.list-items { 
+		display: none; 
+		text-align: center; 
+		width: 100%; 
+		background-color: #bfbfbf;
+	} 
+ 
+	.mobile-logo { 
+		padding: 5px;
+	}
+	#hamburger { 
+		/*color: #bfbfbf; */
+		margin-right: 0; 
+		font-size: 30px; 
+		float: right; 
+		padding-top: 12.5px; 
+		padding-right: 10px;
+	} 
+
+	.desktop { 
+		display: none;
+	}
+}
