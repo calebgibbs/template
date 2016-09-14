@@ -165,5 +165,9 @@ nav ul {
 
 	.desktop { 
 		display: none;
+	} 
+
+	.mobile-hidden { 
+		display: none;
 	}
 }
