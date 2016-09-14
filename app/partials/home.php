@@ -1,34 +1,11 @@
-<html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
-    <meta name="description" content="">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">    
-  </head>
-<body>
-	<div class="wrapper">
-		<div id="content">
-			<nav> 
-				<span class="mobile-menu">
-					<a href="index.html"><img class="mobile-logo" src="http://placehold.it/50x50"></a> 
-					<span id="hamburger" class="glyphicon glyphicon-menu-hamburger"></span>
-				</span>
-				<span id="menu-text">
-					<ul> 
-						<li class="desktop-logo"><a href="index.html"><img src="http://placehold.it/50x50"></a></li>
-						<span class="list-items">
-						<li><a href="index.html">Home</a></li>
-						<li><a href="gallery.html"><span class="desktop">Photo </span>Gallery</a></li>
-						<li><a href="contact.html">Contact<span class="desktop"> us</span></a></li>
-						</span>
-					</ul>
-				</span>
-			</nav> 
-			<div class="container">
+<?php 
+	$this -> layout('master',[
+		'title'=>'Home', 
+		'desc' => 'Welcome to our websites' 
+
+	]); 
+?>
+<div class="container">
 				
 				<div id="my-slider" class="carousel slide" data-ride="carousel">
 
@@ -116,14 +93,3 @@
 
 				</div>
 			</div>
-		</div>
-		<div class="push"></div>
-	</div>
-	<footer class="footer">This is the footer 
-		<span><a href="#">Log In</a></span>
-	</footer>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-	<script src="js/bootstrap.min.js"></script> 
-	<script type="text/javascript" src="js/animation.js"></script>
-</body>
-</html>
