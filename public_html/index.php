@@ -5,10 +5,11 @@ session_start();
 require 'vendor/autoload.php'; 
 $plates = new League\Plates\Engine('app/partials'); 
 
+require '../config.inc.php';
 require 'app/controllers/PageController.php'; 
 
-$page = isset($_GET['page']) ? $_GET['page'] : 'home'; 
-$dbc = new mysqli('localhost', 'root', '',  'template');
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';  
+$dbc = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 switch ($page) {
 	case 'home':

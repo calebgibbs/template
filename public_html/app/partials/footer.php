@@ -17,7 +17,7 @@
         <h4 class="modal-title" id="exampleModalLabel">Log In</h4>
       </div>
       
-      <form method="post" action="index.php?page=settings">
+      <form id="login-form" method="post" action="index.php?page=settings">
       <div class="modal-body">
         
           <div class="form-group">

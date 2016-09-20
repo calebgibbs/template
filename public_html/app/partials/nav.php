@@ -13,7 +13,8 @@
 						<li><a href="index.php?page=contact" <?php if($page=='contact'): ?>class="current"<?php endif; ?>>Contact<span class="desktop"> us</span></a></li>
 						<?php if(isset($_SESSION['id'])): ?>
 						<li><a href="index.php?page=settings" <?php if($page=='settings'): ?>class="current"<?php endif; ?>>Site Managment</a></li>
-						<?php endif; ?>
+						<?php endif; ?> 
+
 						</span>
 					</ul>
 				</span>
