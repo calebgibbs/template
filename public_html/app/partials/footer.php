@@ -35,7 +35,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button name="login" type="submit" class="btn btn-primary">Log in</button>
+        <button id="login-btn" name="login" type="submit" class="btn btn-primary">Log in</button>
       </div>
       </form>
     </div>

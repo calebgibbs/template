@@ -20,7 +20,7 @@ html, body {
 
 .container { 
 	padding-bottom: 10px;
-}
+} 
 
 /*navigation*/ 
 nav { 
@@ -78,11 +78,21 @@ nav .current {
 
 .error { 
 	color: #d43f3a;
-} 
+}  
+
+.input-error { 
+	border-color: #d43f3a;	
+}
 
 .success { 
 	color: #4cae4c;
-}
+} 
+
+.input-success { 
+	border-color: #4cae4c; 
+} 
+
+
 
 @media all and (min-width: 960px) { 
 	
