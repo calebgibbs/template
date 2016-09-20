@@ -31,7 +31,9 @@
     } )( jQuery );
 </script> 
 <?php endif; ?>
+<script type="text/javascript" src="js/regularExpressions.js"></script>
 <script type="text/javascript" src="js/validation.js"></script> 
-<script type="text/javascript" src="js/loginLiveValidation.js"></script>
+<script type="text/javascript" src="js/loginLiveValidation.js"></script> 
+<script type="text/javascript" src="js/registerLiveValidation.js"></script>
 </body>
 </html>

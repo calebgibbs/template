@@ -1,7 +1,7 @@
 <footer class="footer">This is the footer 
         <span class="mobile-hidden"> 
         <?php if(!isset($_SESSION['id'])): ?>
-        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#loginModal" data-whatever="@mdo">
         	Log in
         </button> 
         <?php endif; ?> 
@@ -9,7 +9,7 @@
         <a href="index.php?page=logout">Log out</a>
         <?php endif; ?>
     </span> 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -34,7 +34,7 @@
       </div> 
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        
         <button id="login-btn" name="login" type="submit" class="btn btn-primary">Log in</button>
       </div>
       </form>

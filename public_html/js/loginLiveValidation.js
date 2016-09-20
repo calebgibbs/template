@@ -16,7 +16,7 @@ $(document).ready(function(){
 			$('#log-email').removeClass('input-error').addClass('input-error');
 			ValidEmail = false;
 			return;
-		} else if (!$(this).val().match(reg)) { 
+		} else if (!$(this).val().match(emailPattern)) { 
 			$("#log-email-msg").removeClass("success").addClass("error").append("<p>Email address is invalid</p>"); 
 			$('#log-email').removeClass('input-error').addClass('input-error');  
 			ValidEmail = false;
