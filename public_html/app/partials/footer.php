@@ -30,7 +30,7 @@
             <input name="log-password" id="log-pwd" type="password" class="form-control">
             <span id="log-pwd-msg"></span>
           </div>
-        
+          <span id="login-message"></span>
       </div> 
 
       <div class="modal-footer">

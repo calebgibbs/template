@@ -5,4 +5,7 @@
 
 	]); 
 ?>
-<h1>Settings</h1>
+<div class="container">
+	<h1>Site Managment</h1> 
+	<?= $this->insert('settingsNav') ?>
+</div>

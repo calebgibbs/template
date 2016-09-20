@@ -2,18 +2,24 @@ $(document).ready(function(){
 	
 	var ValidEmail = false;
 	var ValidPassword = false;
-
-	//validate email  
+ 
 	$('#log-email').blur(function(){
 
-		var emailValue = $(this).val();
+		var emailValue = $(this).val(); 
+
+		var reg = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
 
 		$('#log-email-msg').empty(); 
 
 		if( $(this).val().length === 0 ) {
 			$("#log-email-msg").removeClass("success").addClass("error").append("<p>This is required</p>"); 
 			$('#log-email').removeClass('input-error').addClass('input-error');
-			ValidName = false;
+			ValidEmail = false;
+			return;
+		} else if (!$(this).val().match(reg)) { 
+			$("#log-email-msg").removeClass("success").addClass("error").append("<p>Email address is invalid</p>"); 
+			$('#log-email').removeClass('input-error').addClass('input-error');  
+			ValidEmail = false;
 			return;
 		}else{
 			$('#log-email').removeClass('input-error').addClass('input-success');
@@ -31,16 +37,13 @@ $(document).ready(function(){
 			data: dataForServer,
 			success:function(dataFromServer){
 				console.log(dataFromServer);
-				if(dataFromServer === 'emailSuccess'){
-					
+				if(dataFromServer === 'emailSuccess'){	
 					$('#log-email').removeClass('input-error').addClass('input-success'); 
 					ValidEmail = true; 
 					return;
 				} else {
-					
-					$('#log-email-msg').removeClass('success').addClass('error'); 
-					$('#log-email').removeClass('input-success').addClass('input-error');
-					$('#log-email-msg').html('Please enter a valid email');			
+					ValidEmail = false;
+					return;			
 				}
 			},
 			error: function(){
@@ -73,7 +76,9 @@ $(document).ready(function(){
 			ValidPassword = false; 
 			return;
 
-		} 
+		} else { 
+			$('#log-pwd').removeClass('input-error').addClass('input-success');
+		}
 
 		//prepearing ajax 
 		var dataForServer = {
@@ -89,19 +94,15 @@ $(document).ready(function(){
 			success:function(dataFromServer){
 				console.log(dataFromServer);
 				if(dataFromServer === 'passwordSuccess'){
-				 
 					ValidPassword = true; 
 					return;
-
-				} else {
-					
-					$('#log-pwd-msg').removeClass('success').addClass('error'); 
-					$('#log-pwd').removeClass('input-success').addClass('input-error');
-					$('#log-pwd-msg').html('Password is incorrect');			
+				} else {	 
+					ValidPassword = false; 
+					return;		
 				}
 			},
 			error: function(){
-				console.log('Cannot Connect to Server');
+				console.log('Cannot Connect to Server'); 
 			}
 		}); 
 
@@ -111,10 +112,10 @@ $(document).ready(function(){
 	$('#login-btn').click(function(event){
 	if ( ValidPassword === true && ValidEmail === true ) {
 		return true;
-	} else { 
-		
-			event.preventDefault();
-		 
+	} else {	
+		event.preventDefault(); 
+		$('#login-message').removeClass('success').addClass('error');
+		$('#login-message').html('Email address or Password is incorrect');
 	} 
 	});
 });
