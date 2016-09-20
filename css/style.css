@@ -49,6 +49,10 @@ nav a:active {
 
 nav ul { 
 	vertical-align: middle;
+} 
+
+nav .current { 
+	color: #fff;
 }
 
 #my-slider{ 

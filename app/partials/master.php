@@ -1,4 +1,4 @@
-<html>
+<?php $page = isset($_GET['page']) ? $_GET['page'] : 'home'; ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -24,11 +24,14 @@
 <script src="js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="js/animation.js"></script>
 <script src="js/jquery.swipebox.js"></script> 
+<?php if($page == 'gallery'): ?>
 <script type="text/javascript">
     ;( function($) {
         $('.swipebox').swipebox();
     } )( jQuery );
 </script> 
-<script type="text/javascript" src="js/validation.js"></script>
+<?php endif; ?>
+<script type="text/javascript" src="js/validation.js"></script> 
+<script type="text/javascript" src="js/loginLiveValidation.js"></script>
 </body>
 </html>

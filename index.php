@@ -8,22 +8,35 @@ $plates = new League\Plates\Engine('app/partials');
 require 'app/controllers/PageController.php'; 
 
 $page = isset($_GET['page']) ? $_GET['page'] : 'home'; 
+$dbc = new mysqli('localhost', 'root', '',  'template');
 
 switch ($page) {
 	case 'home':
 		require 'app/controllers/HomeController.php'; 
-		$controller = new HomeController();
+		$controller = new HomeController($dbc);
 	break; 
 
 	case 'gallery': 
 		require 'app/controllers/GalleryController.php'; 
-		$controller = new GalleryController();	
+		$controller = new GalleryController($dbc);	
 	break; 
 
 	case 'contact': 
 		require 'app/controllers/ContactController.php'; 
-		$controller = new ContactController();
-	break;
+		$controller = new ContactController($dbc);
+	break; 
+
+	case 'settings': 
+		require 'app/controllers/SettingsController.php'; 
+		$controller = new SettingsController($dbc);
+	break; 
+
+	case 'logout':
+		unset($_SESSION['id']);
+		unset($_SESSION['email']);
+		unset($_SESSION['password']);
+		header('Location: index.php');
+	break;  
 	
 	default:
 		echo "page not found";

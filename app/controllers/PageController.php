@@ -4,7 +4,7 @@ abstract class PageController {
 
 	protected $title;
 	protected $metaDesc;
-	// protected $dbc;
+	protected $dbc;
 	protected $plates;
 	protected $data = [];
 
