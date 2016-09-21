@@ -17,24 +17,114 @@
 			<tr>
 				<th>Name</th> 
 				<th>Email</th> 
-				<th>Privilege</th>
+				<th>Privilege</th> 
+				<th>Account Status</th>
 			</tr>  
 			<?php $totalUsers = 0 ?> 
 			<?php foreach($allUsers as $user):  ?> 
+			<?php if ($user['privilege'] == "admin"): ?>
+			
 			<tr>
 				<td><?= $user['name'] ?></td> 
 				<td><?= $user['email'] ?></td> 
-				<td><?= ucfirst($user['privilege']); ?></td> 
-			</tr> 
-			<?php $totalUsers++; ?>
+				<td>
+					<?= ucfirst($user['privilege']); ?>  
+					<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#change-modal<?= $user['id'] ?>" style="float: right">Change</button>
+				</td> 
+					<div class="modal fade bs-example-modal-sm" id="change-modal<?= $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="exampleModalLabel">Change <?=$user['name']?>'s privilege</h4>
+								</div>
+								<div class="modal-body">
+									<form>
+										<div class="form-group">
+											<select class="form-control changePriv">
+												<option value="admin">Admin</option> 
+												<option value="photo-manager">Photo Manager</option>
+											</select> 
+										</div> 
+										<div class="form-group">
+											<label for="admin-pwd">Please enter your password to confirm</label> 
+											<input  type="password" class="form-control admin-pwd"> 
+											<span class="changePrive-msg"></span>
+										</div>        
+										<div class="modal-footer"> 
+										<button name="changePrivilege" type="submit" class="btn btn-primary changePrivilegeBtn">Change Privilege</button>      </div> 
+									</form>
+								</div>
+							</div>
+						</div> 
+					</div> 
+				<td>
+					<?= ucfirst($user['status']); ?> 
+					<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal<?= $user['id'] ?>" style="float: right">Delete</button>
+				</td> 
+
+
+
+
+
+
+
+<div class="modal fade bs-example-modal-sm" id="delete-modal<?= $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="exampleModalLabel">Are you sure you want to delete <?= $user['name'] ?>'s account?</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<select class="form-control">
+						<option value="no">No</option> 
+						<option value="yes">Yes</option>
+						</select>
+					</div> 
+					<div class="form-group">
+						<label for="admin-pwd">Please enter your password to confirm</label> 
+						<input id="" type="password" class="form-control admin-pwd">
+						<span class="changePrive-msg"></span>
+					</div>
+					<div class="modal-footer"> 
+						<button id="delete-button" name="delete" type="submit" class="btn btn-danger">Delete Account</button>	 
+					</div>
+				</form>
+			</div>
+		</div>
+	</div> 
+</div>
+			
+
+
+
+
+
+
+
+
+
+
+			</tr>  
+
+			<?php $totalUsers++; ?> 
+			
+			
+			<?php endif ?> 
+			<?php if ($user['privilege'] == "photo-manager"): ?>
+			
+			<?php endif ?>
 			<?php endforeach ?>
 		</table>  
 		<p id="user-stats">There <?php if($totalUsers > 1){ 
 				echo "are";
 		} else { 
 			echo "is";
-		} ?> <?= $totalUsers ?> user
-		<button type="button" class="btn btn-primary btn-xs" style="float: right;" data-toggle="modal" data-target="#registerModal" data-whatever="@mdo">Add User</button>
+		} ?> <?= $totalUsers ?> users
+		<button type="button" class="btn btn-success btn-xs" style="float: right;" data-toggle="modal" data-target="#registerModal" data-whatever="@mdo">Add User</button>
 	</p>
 
 	</div>  
@@ -73,12 +163,16 @@
 			  	<option value="admin">Admin</option>
 			</select> 
 			<span id="reg-privilege-msg"></span>
+          </div> 
+          <div class="form-group">
+          	<label for="log-pwd" class="control-label">Tempeory Password:</label> 
+          	<span><p>12345678</p></span>
           </div>
           <span id="login-message"></span>
     	<span id="reg-message"></span>
       </div> 
       <div class="modal-footer"> 
-        <button id="reg-btn" name="register" type="submit" class="btn btn-primary">Log in</button>
+        <button id="reg-btn" name="register" type="submit" class="btn btn-primary">Create Account</button>
       </div>
       </form> 
 

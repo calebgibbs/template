@@ -32,12 +32,18 @@ switch ($page) {
 		$controller = new SettingsController($dbc);
 	break; 
 
+	case 'account': 
+		require 'app/controllers/AccountController.php'; 
+		$controller = new AccountController($dbc);
+	break; 
+
 	case 'logout':
 		unset($_SESSION['id']);
 		unset($_SESSION['email']);
 		unset($_SESSION['password']); 
 		unset($_SESSION['privilege']); 
 		unset($_SESSION['name']);
+		unset($_SESSION['status']);
 		header('Location: index.php');
 	break;  
 	
@@ -48,43 +54,3 @@ switch ($page) {
 } 
 
 $controller -> buildHTML(); 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -4,7 +4,8 @@ class SettingsController extends PageController {
 
 	public function __construct($dbc) {
 		parent::__construct();  
-
+		$this->mustBeLoggedIn(); 
+		$this->protectedPage();
 		$this->dbc = $dbc;
 		
 		if (isset($_POST['register'])) {
@@ -34,7 +35,7 @@ class SettingsController extends PageController {
 
 		$fileredEmail = $this->dbc->real_escape_string( $_POST['login-email'] ); 
 			 
-			$sql = "SELECT id, password, privilege, name 
+			$sql = "SELECT id, password, privilege, name, status
 					FROM users
 					WHERE 
 						email = '$fileredEmail'"; 
@@ -51,8 +52,15 @@ class SettingsController extends PageController {
 			$_SESSION['email'] = $userData['email']; 
 			$_SESSION['privilege'] = $userData['privilege']; 
 			$_SESSION['name'] = $userData['name']; 
+			$_SESSION['status'] = $userData['status']; 
 
-			header('Location: index.php?page=settings');
+			header('Location: index.php?page=settings'); 
+
+			if ($_SESSION['status'] == 'active') {
+				header('Location: index.php?page=settings');
+			}else{ 
+				header('Location: index.php?page=account');
+			}
 
 			} 
 		}
@@ -61,7 +69,7 @@ class SettingsController extends PageController {
 	}   
 
 	private function getAllUsers() { 
-		$sql = "SELECT id, email, privilege, name 
+		$sql = "SELECT id, email, privilege, name, status 
 				FROM users"; 
 		$result = $this->dbc->query($sql);  
 		$allData = $result->fetch_all(MYSQLI_ASSOC);  
@@ -76,7 +84,7 @@ class SettingsController extends PageController {
 		$fileredEmail = $this->dbc->real_escape_string( $email ); 
 		$filteredName = $this->dbc->real_escape_string( $name );
 
-		$password = $this->randomPassword();   
+		$password = "12345678";   
 
 		$hash = password_hash($password, PASSWORD_BCRYPT); 
 
@@ -84,26 +92,11 @@ class SettingsController extends PageController {
 				VALUES ('$privilege', '$name', '$email', '$hash')"; 
 		$this->dbc->query($sql); 
 
-		// $to = 'calebgibbs@me.com'; 
-		// $subject = 'Password'; 
-		// $message = $password; 
-		// $headers = "From: website <calebgibbs@aol.com>/r/n";
-
-		// mail($to, $subject, $message, $headers); 
-		mail('calebgibbs@me.com', 'password', $password, null,
-   '-fwebmaster@example.com');
+		header('Location: index.php?page=settings'); 
+		die();
 
 		
 
 	} 
 
-	private function randomPassword($length = 10) { 
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	    $charactersLength = strlen($characters);
-	    $randomString = '';
-	    for ($i = 0; $i < $length; $i++) {
-	        $randomString .= $characters[rand(0, $charactersLength - 1)];
-	    }
-	    return $randomString;
-	}
 }

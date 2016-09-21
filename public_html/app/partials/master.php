@@ -13,7 +13,7 @@
 <body> 
     <div class="wrapper">
         <div id="content">
-           <?= $this->insert('nav') ?>
+           <?= $this->insert('nav') ?>  
            <?= $this->section('content') ?> 
         </div>
         <div class="push"></div>
@@ -33,7 +33,8 @@
 <?php endif; ?>
 <script type="text/javascript" src="js/regularExpressions.js"></script>
 <script type="text/javascript" src="js/validation.js"></script> 
-<script type="text/javascript" src="js/loginLiveValidation.js"></script> 
+<script type="text/javascript" src="js/loginLiveValidation.js"></script>  
+<script type="text/javascript" src="js/manageUsersValidation.js"></script>
 <script type="text/javascript" src="js/registerLiveValidation.js"></script>
 </body>
 </html>

@@ -30,7 +30,7 @@ if (isset($_POST['password'])) {
 	$password = $_POST['password']; 
 	$entdEmail = $_POST['entdEmail'];
 
-	//hash email 
+	//filter email 
 	$entdEmail = $dbc->real_escape_string($entdEmail); 
 
 	$sql = "SELECT password 

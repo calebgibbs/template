@@ -21,5 +21,29 @@ abstract class PageController {
 			header('Location: index.php?page=login');
 		}
 
+	}
+
+	public function mustBeLoggedOut() {
+		
+		if( isset($_SESSION['id']) ) {
+			header('Location: index.php?page=logout');
+			die();
+		}
+
 	} 
+
+	public function mustBeAdmin() { 
+
+		if($_SESSION['privilege'] != 'admin') { 
+			header('Location: index.php?page=error404');
+		}
+	}  
+
+	public function protectedPage() { 
+		if (isset($_SESSION['id'])) {
+			if ($_SESSION['status'] == "not_active") {
+				header('Location: index.php?page=account');
+			}
+		}
+	}
 }
