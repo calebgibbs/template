@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	var adminPwdPriv = false; 
+	var adminPwdPriv = false;  
+	var deleteAccount = false;
 	$('.admin-pwd').blur(function(){
 		var admPwdValue = $(this).val();  
 		$('.changePrive-msg').empty();
@@ -26,8 +27,7 @@ $(document).ready(function(){
 				
 				if(dataFromServer === 'success'){	
 					$('.changePrive-msg').removeClass('error').addClass('success'); 
-					$('.admin-pwd').removeClass('input-error').addClass('input-success');
-					$('.changePrive-msg').html('password is correct'); 
+					$('.admin-pwd').removeClass('input-error').addClass('input-success'); 
 					adminPwdPriv = true; 
 					return;	
 				} else {	 	 
@@ -37,13 +37,30 @@ $(document).ready(function(){
 				}
 			}, 
 			error:function(){ 
-				console.log('cannot connect to server');
 				adminPwdPriv = false; 
 				return;
 			}
 		}); 
 	}); 
-	
+
+
+	$('.deleteOption').blur(function(){
+		$('.delete-message').empty();   
+		var delValue = $(this).val();
+		if(delValue == "no") { 
+			$('.delete-message').removeClass('success').addClass('error'); 
+			$('.delete-message').html('<p>You have chosen to not delete this account</p>'); 
+			$('.deleteOption').removeClass('input-success').addClass('input-error');
+			deleteAccount = false; 
+			return;
+		} else {
+			$('.deleteOption').removeClass('input-error').addClass('input-success');	 
+			deleteAccount = true; 
+			return;
+		}
+
+	});
+
 	$('.changePrivilegeBtn').click(function(event){
 		if ( adminPwdPriv === true ) {
 			return true;
@@ -51,6 +68,16 @@ $(document).ready(function(){
 			event.preventDefault(); 
 			$('.changePrive-msg').removeClass('success').addClass('error');
 			$('.changePrive-msg').html('password is not correct');
+		}
+	}); 
+
+	$('.delete-button').click(function(event){
+		if ( adminPwdPriv === true && deleteAccount === true ) {
+			return true;
+		} else { 
+			event.preventDefault(); 
+			$('.del-frm-msg').removeClass('success').addClass('error');
+			$('.del-frm-msg').html('You have not filled out the from correctly');
 		}
 	});
 })

@@ -16,7 +16,10 @@ class SettingsController extends PageController {
 			if (isset($_POST['login'])) {
 				$this->processLogin();
 			}
-		}
+		} 
+
+		if (isset($_POST['changePrivilege'])) {
+			$this->changeUserPrivilege();		}
 	}
 
 	public function buildHTML() {  
@@ -94,9 +97,27 @@ class SettingsController extends PageController {
 
 		header('Location: index.php?page=settings'); 
 		die();
+	}  
 
+	private function changeUserPrivilege() { 
+		$selected = $_POST['newPrivilege']; 
+		$userID = intval(preg_replace('/[^0-9]+/', '', $selected)); 
+		$newClass = preg_replace("/[^a-z]+/", "", $selected); 
+
+		$sql = "SELECT privilege FROM users WHERE id = $userID"; 
+		$result = $this->dbc->query($sql); 
+		if (!$result) {
+			die('something went wrong');
+		} else { 
+			$sql = "UPDATE users SET privilege = '$newClass' WHERE id = $userID"; 
+			$this->dbc->query($sql);
+		}
+		
+		
+		
 		
 
-	} 
+
+	}
 
 }

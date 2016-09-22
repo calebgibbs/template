@@ -2,7 +2,6 @@
 	$this -> layout('master',[
 		'title'=>'Settings', 
 		'desc' => 'Manage website content' 
-
 	]); 
 ?>
 <div class="container">
@@ -39,11 +38,86 @@
 									<h4 class="modal-title" id="exampleModalLabel">Change <?=$user['name']?>'s privilege</h4>
 								</div>
 								<div class="modal-body">
-									<form>
+									<form method="post" action="index.php?page=settings">
+										<div class="form-group">
+											<select name="newPrivilege" class="form-control changePriv">
+												<option value="admin<?= $user['id'] ?>">Admin</option> 
+												<option value="photo-manager<?= $user['id'] ?>">Photo Manager</option>
+											</select> 
+										</div> 
+										<div class="form-group">
+											<label for="admin-pwd">Please enter your password to confirm</label> 
+											<input name="changePrivPwd" type="password" class="form-control admin-pwd"> 
+											<span class="changePrive-msg"></span>
+										</div>        
+										<div class="modal-footer"> 
+										<button name="changePrivilege" type="submit" class="btn btn-primary changePrivilegeBtn">Change Privilege</button>      </div> 
+									</form>
+								</div>
+							</div>
+						</div> 
+					</div> 
+				<td>
+					<?= ucfirst($user['status']); ?> 
+					<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal<?= $user['id'] ?>" style="float: right">Delete</button>
+				</td> 
+					<div class="modal fade bs-example-modal-sm" id="delete-modal<?= $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="exampleModalLabel">Are you sure you want to delete <?= $user['name'] ?>'s account?</h4>
+								</div>
+								<div class="modal-body">
+									<form method="post" action="index.php?page=settings">
+										<div class="form-group">
+											<select class="form-control deleteOption">
+												<option value="no">No</option> 
+												<option value="yes">Yes</option>
+											</select> 
+											<span class="delete-message"></span>
+										</div>  
+										<div class="form-group">
+											<label for="admin-pwd">Please enter your password to confirm</label> 
+											<input id="" type="password" class="form-control admin-pwd">
+											<span class="changePrive-msg"></span>
+										</div>
+										<span class="del-frm-msg"></span>
+										<div class="modal-footer"> 
+											<button name="delete<?= $user['id'] ?>" type="submit" class="btn btn-danger delete-button">Delete Account</button>	 
+										</div> 
+
+									</form>
+								</div>
+							</div>
+						</div> 
+					</div>
+			</tr>  
+			<?php $totalUsers++; ?> 
+			<?php endif ?> 
+			<?php endforeach ?>
+			<?php foreach($allUsers as $user):  ?> 
+			<?php if ($user['privilege'] == "photo-manager"): ?>
+			<tr>
+				<td><?= $user['name'] ?></td> 
+				<td><?= $user['email'] ?></td> 
+				<td>
+					<?= ucfirst($user['privilege']); ?>  
+					<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#change-modal<?= $user['id'] ?>" style="float: right">Change</button>
+				</td> 
+					<div class="modal fade bs-example-modal-sm" id="change-modal<?= $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="exampleModalLabel">Change <?=$user['name']?>'s privilege</h4>
+								</div>
+								<div class="modal-body">
+									<form method="post" action="index.php?page=settings">
 										<div class="form-group">
 											<select class="form-control changePriv">
-												<option value="admin">Admin</option> 
-												<option value="photo-manager">Photo Manager</option>
+												<option value="admin<?= $user['id'] ?>">Admin</option> 
+												<option value="photo-manager<?= $user['id'] ?>">Photo Manager</option>
 											</select> 
 										</div> 
 										<div class="form-group">
@@ -62,60 +136,38 @@
 					<?= ucfirst($user['status']); ?> 
 					<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal<?= $user['id'] ?>" style="float: right">Delete</button>
 				</td> 
+					<div class="modal fade bs-example-modal-sm" id="delete-modal<?= $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="exampleModalLabel">Are you sure you want to delete <?= $user['name'] ?>'s account?</h4>
+								</div>
+								<div class="modal-body">
+									<form method="post" action="index.php?page=settings">
+										<div class="form-group">
+											<select class="form-control deleteOption">
+												<option value="no">No</option> 
+												<option value="yes">Yes</option>
+											</select> 
+											<span class="delete-message"></span>
+										</div>  
+										<div class="form-group">
+											<label for="admin-pwd">Please enter your password to confirm</label> 
+											<input id="" type="password" class="form-control admin-pwd">
+											<span class="changePrive-msg"></span>
+										</div>
+										<span class="del-frm-msg"></span>
+										<div class="modal-footer"> 
+											<button name="delete<?= $user['id'] ?>" type="submit" class="btn btn-danger delete-button">Delete Account</button>	 
+										</div> 
 
-
-
-
-
-
-
-<div class="modal fade bs-example-modal-sm" id="delete-modal<?= $user['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="exampleModalLabel">Are you sure you want to delete <?= $user['name'] ?>'s account?</h4>
-			</div>
-			<div class="modal-body">
-				<form>
-					<div class="form-group">
-						<select class="form-control">
-						<option value="no">No</option> 
-						<option value="yes">Yes</option>
-						</select>
-					</div> 
-					<div class="form-group">
-						<label for="admin-pwd">Please enter your password to confirm</label> 
-						<input id="" type="password" class="form-control admin-pwd">
-						<span class="changePrive-msg"></span>
+									</form>
+								</div>
+							</div>
+						</div> 
 					</div>
-					<div class="modal-footer"> 
-						<button id="delete-button" name="delete" type="submit" class="btn btn-danger">Delete Account</button>	 
-					</div>
-				</form>
-			</div>
-		</div>
-	</div> 
-</div>
-			
-
-
-
-
-
-
-
-
-
-
-			</tr>  
-
-			<?php $totalUsers++; ?> 
-			
-			
-			<?php endif ?> 
-			<?php if ($user['privilege'] == "photo-manager"): ?>
-			
+			</tr>
 			<?php endif ?>
 			<?php endforeach ?>
 		</table>  
