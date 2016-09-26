@@ -40,7 +40,7 @@
 								<div class="modal-body">
 									<form method="post" action="index.php?page=settings">
 										<div class="form-group">
-											<select name="newPrivilege" class="form-control changePriv">
+											<select name="new-class" class="form-control changePriv">
 												<option value="admin<?= $user['id'] ?>">Admin</option> 
 												<option value="photo-manager<?= $user['id'] ?>">Photo Manager</option>
 											</select> 

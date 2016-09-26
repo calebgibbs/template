@@ -100,7 +100,7 @@ class SettingsController extends PageController {
 	}  
 
 	private function changeUserPrivilege() { 
-		$selected = $_POST['newPrivilege']; 
+		$selected = $_POST['new-class']; 
 		$userID = intval(preg_replace('/[^0-9]+/', '', $selected)); 
 		$newClass = preg_replace("/[^a-z]+/", "", $selected); 
 
